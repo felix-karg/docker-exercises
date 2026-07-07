@@ -16,3 +16,36 @@ This is very important for 2 reasons:
 1. Clone [git repository](https://gitlab.com/twn-devops-bootcamp/latest/07-docker/docker-exercises)
 2. Change upstream URL with `git remote set-url origin <url_of_your_git_repo>`
 3. Check out file `DatabaseConfig.java` too see environment variables used for DB and credentials
+
+## Exercise 1: Start Mysql contgainer
+First you want to test the application locally with a mysql database. But you don't want to install Mysql, you want to get started fast, so you start it as a docker container:
+- Start mysql container locally using the official Docker image. Set all needed environment variables.
+- Export all needed environment variables for your application for connecting with the database (check variable names inside the code)
+- Build a jar file and start the application. Test access from browser. Make some changes.
+
+### Implementation Steps:
+1. Search for MySQL image on [Docker Hub](hub.docker.com)
+2. Start MySQL container and set environment variables with
+   ```
+   docker run \
+   --name my-mysql \
+   -e MYSQL_ROOT_PASSWORD=<my-password> \
+   -e MYSQL_DATABASE=my-db \
+   -e MYSQL_USER=my-user \
+   -e MYSQL_PASSWORD=<some_password> \
+   -p 3306:3306 \
+   -d \
+   mysql
+   ```
+3. Verify with `docker ps` that the container is running
+4. Export variables set in the docker command above in the local CMD shell with
+   ```
+   set DB_USER=my-user
+   set DB_PWD=<some_password>
+   set DB_SERVER=localhost
+   set DB_NAME=my-db
+   ```
+   For Unix-like systems use `export` command
+5. Build application with `gradle build`
+6. Start application with `java -jar ./build/libs/docker-exercises-project-1.0-SNAPSHOT.jar`
+7. Open browser and navigate to `localhost:8080` to verify that the application is reachable
