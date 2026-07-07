@@ -107,3 +107,11 @@ repository, so you can fetch it from there on the server. Therefore, you have to
 2. Retag image with `docker tag docker-exercises:1.0 <nexus-ip>:<port-of-repo-connector>/docker-exercises:1.0`
 3. Push with `docker push <nexus-ip>:<port-of-repo-connector>/docker-exercises:1.0`
 4. Browse Nexus repository to verify that the image is pushed successfully
+
+## Exercise 6: Add application to docker-compose
+- Add your application's docker image to docker-compose. Configure all needed env vars.
+- Make all these environment variable values configurable, by setting them on the server when deploying.
+
+### Implementation Steps:
+1. Add service for Java app to `compose.yaml`
+2. Replace hardcoded values of environment variables with variables
