@@ -69,3 +69,17 @@ Again, you don't want to install it locally, so you want to start it also as a d
    ```
 3. Open browser an navigate to `localhost:8081`
 4. Login with MySQL credentials
+
+## Exercise 3: Use docker-compose for MySQL and phpMyAdmin
+You have 2 containers your app needs and you don't want to start them separately all the time. So you configure a 
+docker-compose file for both:
+- Create a docker-compose file with both containers
+- Configure a volume for your DB
+- Test that everything works again
+
+### Implementation Steps:
+1. Create Docker Compose YAML file (see `compose.yaml` in this repository)
+2. Start containers with `docker-compose -f compose.yaml up`
+3. Open phpMyAdmin at `localhost:8081` and login
+4. Start application and edit an entry
+5. Verify in phpMyAdmin that the change was applied in DB
