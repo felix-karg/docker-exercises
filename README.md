@@ -83,3 +83,15 @@ docker-compose file for both:
 3. Open phpMyAdmin at `localhost:8081` and login
 4. Start application and edit an entry
 5. Verify in phpMyAdmin that the change was applied in DB
+
+## Exercise 4: Dockerize your Java Application
+Now you are done with testing the application locally with Mysql database and want to deploy it on the server to make it 
+accessible for others in the team, so they can edit information.
+
+And since your DB and DB UI are running as docker containers, you want to make your app also run as a docker container. 
+So you can all start them using 1 docker-compose file on the server. So you do the following:
+- Create a Dockerfile for your java application
+
+## Implementation Steps:
+1. Search for Java image on [Docker Hub](hub.docker.com)
+2. Write Dockerfile (see Dockerfile in this repository)
