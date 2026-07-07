@@ -49,3 +49,23 @@ First you want to test the application locally with a mysql database. But you do
 5. Build application with `gradle build`
 6. Start application with `java -jar ./build/libs/docker-exercises-project-1.0-SNAPSHOT.jar`
 7. Open browser and navigate to `localhost:8080` to verify that the application is reachable
+
+## Exercise 2: Start MySQL GUI container
+Now you have a database, you want to be able to see the database data using a UI tool, so you decide to deploy phpmyadmin. 
+Again, you don't want to install it locally, so you want to start it also as a docker container.
+- Start phpmyadmin container using the official image.
+- Access phpmyadmin from your browser and test logging in to your Mysql database
+
+### Implementation Steps:
+1. Search for phpMyAdmin image on [Docker Hub](hub.docker.com)
+2. Run phpMyAdmin container with
+   ```
+   docker run \
+   --name phpmyadmin \
+   --link my-mysql:db \
+   -p 8081:80 \
+   -d \
+   phpmyadmin
+   ```
+3. Open browser an navigate to `localhost:8081`
+4. Login with MySQL credentials
