@@ -115,3 +115,38 @@ repository, so you can fetch it from there on the server. Therefore, you have to
 ### Implementation Steps:
 1. Add service for Java app to `compose.yaml`
 2. Replace hardcoded values of environment variables with variables
+
+## Exercise 7: Run application on server with docker-compose
+Finally your docker-compose file is completed and you want to run your application on the server with docker-compose. 
+For that you need to do the following:
+- Set insecure docker repository on server, because Nexus uses http
+- Run docker login on the server to be allowed to pull the image
+- Your application index.html has a hardcoded localhost as a HOST to send requests to the backend. You need to fix that 
+and set the server IP address instead, because the server is going to be the host when you deploy the application on a 
+remote server. (Don't forget to rebuild and push the image and if needed adjust the docker-compose file)
+- Copy docker-compose.yaml to the server
+- Set the needed environment variables for all containers in docker-compose
+- Run docker-compose to start all 3 containers
+
+### Implementation Steps:
+1. SSH into Droplet
+2. Install docker with `apt install docker.io`
+3. Add file `/etc/docker/daemon.json` with vim and add the following content:
+   ```
+   {
+      "insecure-registries": [ "<droplet-ip>:<repo-port>" ]
+   }
+   ```
+4. Restart Docker with
+   ```
+   systemctl deamon-reload
+   systemctl restart docker
+   ```
+5. Set server IP in index.html
+6. Build new image with `docker build docker-exercises:1.1 .`
+7. Retag the new image with `docker tag docker-exercises:1.1 <nexus-ip>:<repo-port>/docker-exercises:1.1`
+8. Push new image with `docker push <nexus-ip>:<repo-port>/docker-exercises:1.1`
+9. Copy compose.yaml to server with `scp ./compose.yaml root@<droplet-ip>:/root`
+10. Set environment variables on servier with `export`
+11. Install docker-compose with `apt install docker-compose`
+12. Run containers with `docker-compose -f compose.yaml up`
