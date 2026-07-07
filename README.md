@@ -95,3 +95,15 @@ So you can all start them using 1 docker-compose file on the server. So you do t
 ## Implementation Steps:
 1. Search for Java image on [Docker Hub](hub.docker.com)
 2. Write Dockerfile (see Dockerfile in this repository)
+
+## Exercise 5: Build and push Java Application Docker Image
+Now for you to be able to run your java app as a docker image on a remote server, it must be first hosted on a docker 
+repository, so you can fetch it from there on the server. Therefore, you have to do the following:
+- Create a docker hosted repository on Nexus
+- Build the image locally and push to this repository
+
+### Implementation Steps:
+1. Login to Nexus repository with `docker login <nexus-ip>:<port-of-repo-connector>`
+2. Retag image with `docker tag docker-exercises:1.0 <nexus-ip>:<port-of-repo-connector>/docker-exercises:1.0`
+3. Push with `docker push <nexus-ip>:<port-of-repo-connector>/docker-exercises:1.0`
+4. Browse Nexus repository to verify that the image is pushed successfully
